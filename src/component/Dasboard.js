@@ -30,7 +30,7 @@ const Dashboard = () => {
       return <Navigate to="/login" />;
     }
     fetchRecites(); // Fetch data when component mounts
-  },[]);
+  });
 
   // Fungsi untuk menghapus data
   const handleDelete = async (reciteId) => {

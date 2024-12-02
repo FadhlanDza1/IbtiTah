@@ -3,12 +3,12 @@ import React, { useState } from "react";
 import { Menu, Button } from "antd";
 import {
   DashboardOutlined,
-  FormOutlined,
+
   CloudUploadOutlined,
   QuestionCircleOutlined,
   CloseOutlined,
   LoginOutlined,
-  FolderOpenFilled,
+
   ProfileOutlined,
   TeamOutlined,
 } from "@ant-design/icons";

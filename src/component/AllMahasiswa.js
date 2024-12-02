@@ -2,12 +2,13 @@ import React, { useEffect, useState } from "react";
 import NavigationDrawer from "./NavigationDrawer";
 import "../style/mahasiswa.css"
 import api from "../Connection/api";
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { message, Table } from "antd";
 
 const AllMahasiswa= () =>{
     const [student, setStudent] = useState([])
     const [loading, setLoading] = useState(false)
+    const navigate = useNavigate()
     const userId = localStorage.getItem("userId")
     const fetchStudent = async () =>{
         setLoading(true)
@@ -35,10 +36,12 @@ const AllMahasiswa= () =>{
     }
     useEffect(() =>{
         if (!userId){
-            return <Navigate to="/login"/>
+            navigate("/login")
+        }else{
+            fetchStudent()
         }
-        fetchStudent()
-    },[])
+        
+    })
     const columns = [
         {
             title: "No",

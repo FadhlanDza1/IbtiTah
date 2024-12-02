@@ -4,7 +4,6 @@ import Home from './component/Home';
 import Login from './component/Login';
 import Register from './component/Register';
 import Dasboard from './component/Dasboard';
-import NavigationDrawer from './component/NavigationDrawer';
 import Upload from './component/Upload';
 import Profile from './component/Profile';
 import AllMahasiswa from './component/AllMahasiswa';

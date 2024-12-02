@@ -17,6 +17,7 @@ function NavigationBar() {
             width={50} 
             height={50} 
             className="d-inline-block align-top" 
+            alt="logo"
           />
           <span className="navbar-brand-text">IbTiTah <br/> Fakultas Sains dan Teknologi</span>
         </Navbar.Brand>
