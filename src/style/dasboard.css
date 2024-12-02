@@ -1,0 +1,42 @@
+.dashboard-layout {
+    display: flex;
+    height: 50vh;
+    background-color: #4BE2BF;
+}
+/* Container untuk dashboard */
+.dashboard-content {
+    margin-top: 60px;
+    padding: 20px;
+    width: 100%;
+  }
+  
+  /* Judul Dashboard */
+  .dashboard-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  /* Wrapper untuk tabel */
+  .table-wrapper {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Status Icon */
+  .status-icon {
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  .status-icon.completed {
+    color: green;
+  }
+  
+  .status-icon.not_completed {
+    color: red;
+  }
+  

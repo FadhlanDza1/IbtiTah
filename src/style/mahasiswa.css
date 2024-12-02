@@ -1,0 +1,23 @@
+.mahasiswa-layout{
+    display: flex;
+    height: 50vh;
+    background-color: #4BE2BF;
+}
+.mahasiswa-content{
+    margin-top: 60px;
+    padding: 20px;
+    width: 100%;
+}
+
+.mahasiswa-title{
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+}
+.box-wrapper {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }

@@ -1,0 +1,61 @@
+/* Wrapper utama untuk layout */
+.dashboard-layout {
+  display: flex;
+  height: 50vh;
+}
+
+/* Bagian kiri: Navigation Drawer */
+.dashboard-layout .navigation-drawer {
+  width: 250px;
+  flex-shrink: 0;
+}
+
+/* Bagian kanan: Konten */
+.dashboard-content {
+  flex: 1;
+  padding: 20px;
+}
+
+.dashboard-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* Wrapper untuk form */
+.upload-wrapper {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.upload-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-row {
+  display: flex;
+  gap: 16px;
+}
+
+.form-row .ant-form-item {
+  flex: 1;
+}
+
+.upload-button {
+  width: 100%;
+  background-color: #1890ff;
+  color: white;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+.upload-button:hover {
+  background-color: #40a9ff;
+}

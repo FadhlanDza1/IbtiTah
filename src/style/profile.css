@@ -1,0 +1,79 @@
+.dashboard-layout {
+  display: flex;
+  height: 50vh;
+  background-color: #4BE2BF;
+}
+
+.dashboard-content {
+  margin: auto;
+  padding: 20px;
+  width: 100%;
+  margin-top: 60px;
+}
+
+.dashboard-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.profile-card {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.profile-avatar-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.profile-avatar {
+  width: 150px;
+  height: 150px;
+  border: 2px solid #4BE2BF;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.upload-avatar-button {
+  color: #4BE2BF;
+  border-color: #4BE2BF;
+}
+
+.upload-avatar-button:hover {
+  background-color: #4BE2BF;
+  color: #ffffff;
+}
+
+.profile-form-container {
+  flex: 1;
+}
+
+.ant-form-item {
+  margin-bottom: 15px;
+}
+
+.upload-button {
+  width: 100%;
+  background-color: #4BE2BF;
+  border-color: #4BE2BF;
+}
+
+.upload-button:hover {
+  background-color: #3ac9a5;
+  border-color: #3ac9a5;
+}

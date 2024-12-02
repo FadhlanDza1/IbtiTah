@@ -1,0 +1,88 @@
+/* Container utama */
+.drawer-container {
+  position: relative;
+    width: 250px;
+    height: 600px;
+    margin-top: 80px;
+    background-color: #ffffff;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    border-radius: 0 10px 10px 0;
+  }
+  
+  /* Logo dan judul */
+  .drawer-logo {
+    margin-top: 10px;
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  .drawer-logo-image {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+  }
+  
+  .drawer-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 10px 0 5px;
+    color: #333333;
+  }
+  
+  .drawer-subtitle {
+    font-size: 14px;
+    color: #777777;
+    margin: 0;
+  }
+  
+  /* Menu */
+  .drawer-menu {
+    margin-top: 40px;
+    width: 100%;
+    border: none;
+  }
+  
+  .drawer-menu .ant-menu-item {
+    font-size: 16px;
+    font-weight: 500;
+    margin: 10px 0;
+    border-radius: 8px;
+    color: #333333;
+  }
+  
+  .drawer-menu .ant-menu-item:hover {
+    background-color: #e6f7ff;
+  }
+  
+  .drawer-menu .ant-menu-item .anticon {
+    font-size: 18px;
+    color: #50d1c0;
+  }
+  
+  .close-button {
+    position: absolute;
+    top: 10px; /* Jarak dari atas */
+    right: 10px; /* Jarak dari kanan */
+    z-index: 10; /* Pastikan tombol berada di atas elemen lain */
+    background-color: transparent; /* Hapus latar belakang default tombol */
+    border: none; /* Hapus border default tombol */
+    color: #333; /* Warna ikon tombol */
+    font-size: 16px; /* Ukuran ikon */
+    cursor: pointer; /* Menambahkan ikon tangan pada hover */
+  }
+  .open-button {
+    position: fixed; /* Agar tetap berada di posisi yang sama meskipun halaman di-scroll */
+    top: 20px; /* Jarak dari bawah layar */
+    left: 20px; /* Jarak dari kiri layar */
+    justify-content: center; /* Menempatkan ikon di tengah */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Menambahkan bayangan */
+    cursor: pointer; /* Menampilkan kursor pointer */
+  }
+
+  
+
+    
