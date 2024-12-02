@@ -24,37 +24,7 @@ const Dashboard = () => {
     }
     return `/student/${id}/recite`; // Fixed endpoint for student role
   };
-  
-  useEffect(() => {
-    if (!userId) {
-      return <Navigate to="/login" />;
-    }
-    fetchRecites(); // Fetch data when component mounts
-  });
 
-  // Fungsi untuk menghapus data
-  const handleDelete = async (reciteId) => {
-    try {
-      await api.delete(`/student/${userId}/recite/${reciteId}`);
-      message.success("Data berhasil dihapus.");
-      fetchRecites(); // Refresh tabel setelah data dihapus
-    } catch (error) {
-      console.error("Error deleting recite:", error);
-      message.error("Gagal menghapus data.");
-    }
-  };
-
-  const handleStatusChange = async (updatedValues, reciteId) => {
-    try {
-      await api.post(`/mentor/${reciteId}/review`, updatedValues);
-      message.success("Status berhasil diperbarui.");
-      fetchRecites(); // Refresh tabel setelah update
-    } catch (error) {
-      console.error("Error updating status:", error.response?.data || error.message);
-      message.error("Gagal memperbarui status.");
-    }
-  };
-  
   const fetchRecites = async () => {
     setLoading(true);
     try {
@@ -81,6 +51,39 @@ const Dashboard = () => {
       setLoading(false);
     }
   };
+  
+  useEffect(() => {
+    if (!userId) {
+      <Navigate to="/login" />;
+    }else{
+      fetchRecites()
+    }
+  },[]);
+
+  // Fungsi untuk menghapus data
+  const handleDelete = async (reciteId) => {
+    try {
+      await api.delete(`/student/${userId}/recite/${reciteId}`);
+      message.success("Data berhasil dihapus.");
+      fetchRecites(); // Refresh tabel setelah data dihapus
+    } catch (error) {
+      console.error("Error deleting recite:", error);
+      message.error("Gagal menghapus data.");
+    }
+  };
+
+  const handleStatusChange = async (updatedValues, reciteId) => {
+    try {
+      await api.post(`/mentor/${reciteId}/review`, updatedValues);
+      message.success("Status berhasil diperbarui.");
+      fetchRecites(); // Refresh tabel setelah update
+    } catch (error) {
+      console.error("Error updating status:", error.response?.data || error.message);
+      message.error("Gagal memperbarui status.");
+    }
+  };
+  
+  
   
   // Kolom Tabel
   const columns = [
