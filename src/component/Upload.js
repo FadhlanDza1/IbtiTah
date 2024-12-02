@@ -1,6 +1,6 @@
 import React from "react";
 import NavigationDrawer from "./NavigationDrawer";
-import { Input, Button, Form, DatePicker, message } from "antd";
+import { Input, Button, Form, message } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
 import "../style/upload.css";
 import api from "../Connection/api"
@@ -35,9 +35,6 @@ const Upload = () =>{
     }
   }
     const [form] = Form.useForm();
-    const onChange = (date, dateString) =>{
-        console.log(date, dateString)
-    }
     return(
         <div className="dashboard-layout">
         <NavigationDrawer />

@@ -47,7 +47,7 @@ const Register = () => {
       if (response.status === 200) {
         message.success("Registrasi berhasil!");
         console.log(payload)
-        // navigate("/login"); // Arahkan ke halaman login setelah registrasi berhasil
+        navigate("/login"); // Arahkan ke halaman login setelah registrasi berhasil
       } else {
         message.error("Registrasi gagal. Periksa data Anda.");
       }
