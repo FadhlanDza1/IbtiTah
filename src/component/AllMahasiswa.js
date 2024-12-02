@@ -41,7 +41,7 @@ const AllMahasiswa= () =>{
             fetchStudent()
         }
         
-    })
+    },[])
     const columns = [
         {
             title: "No",
