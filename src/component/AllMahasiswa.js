@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import NavigationDrawer from "./NavigationDrawer";
-import "../style/mahasiswa.css"
+import "../style/background.css"
 import api from "../Connection/api";
 import { useNavigate } from "react-router-dom";
 import { message, Table } from "antd";
@@ -78,11 +78,11 @@ const AllMahasiswa= () =>{
         }
     ]
     return(
-        <div className="mahasiswa-layout">
+        <div className="bg-layout">
             <NavigationDrawer/>
-                <div className="mahasiswa-content">
-                <h2 className="mahasiswa-title">Daftar Mahasiswa</h2>
-                    <div className="box-wrapper">
+                <div className="bg-container-content">
+                <h2 className="bg-title ">Daftar Mahasiswa</h2>
+                    <div className="bg-table-wrapper">
                     <Table
                             columns={columns}
                             dataSource={student}

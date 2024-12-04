@@ -4,6 +4,7 @@ import { Input, Button, Form, message } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
 import "../style/upload.css";
 import api from "../Connection/api"
+import "../style/background.css"
 
 
 const Upload = () =>{
@@ -36,11 +37,11 @@ const Upload = () =>{
   }
     const [form] = Form.useForm();
     return(
-        <div className="dashboard-layout">
+        <div className="bg-layout">
         <NavigationDrawer />
-        <div className="dashboard-content">
-          <h2 className="dashboard-title">Upload</h2>
-          <div className="upload-wrapper">
+        <div className="bg-container-content">
+          <h2 className="bg-title ">Upload</h2>
+          <div className="bg-table-wrapper">
             <Form
               form={form}
               onFinish={handleSubmit}

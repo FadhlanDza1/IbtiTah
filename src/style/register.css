@@ -1,42 +1,85 @@
 /* RegisterForm.css */
 .register-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #f5f5f5;
-  }
-  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f5f5f5;
+  padding: 20px; /* Tambahkan padding untuk layar kecil */
+  box-sizing: border-box; /* Pastikan elemen termasuk padding */
+}
+
+.register-box {
+  width: 426px;
+  max-width: 90%; /* Agar kotak tidak terlalu besar pada layar kecil */
+  height: 500px;
+  padding: 30px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.register-title {
+  text-align: center;
+  font-weight: bold;
+  font-size: 24px; /* Ukuran judul */
+  margin-bottom: 20px;
+}
+
+.register-button {
+  width: 100%;
+  background-color: #4caf50;
+  color: #fff;
+  font-weight: bold;
+  border: none;
+  font-size: 16px;
+  padding: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.register-button:hover {
+  background-color: #45a049;
+}
+
+.login-link {
+  text-align: center;
+  margin-top: 15px;
+  font-size: 14px;
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
   .register-box {
-    width: 426px;
-    height: 618px;
-    padding: 30px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      height: auto; /* Tinggi menyesuaikan konten */
+      padding: 20px; /* Kurangi padding di layar lebih kecil */
   }
-  
+
   .register-title {
-    text-align: center;
-    font-weight: bold;
-    margin-bottom: 20px;
+      font-size: 20px; /* Kurangi ukuran font */
   }
-  
+
   .register-button {
-    width: 100%;
-    background-color: #4caf50;
-    color: #fff;
-    font-weight: bold;
-    border: none;
+      font-size: 14px; /* Ukuran font lebih kecil */
+      padding: 8px; /* Kurangi padding tombol */
   }
-  
-  .register-button:hover {
-    background-color: #45a049;
-  }
-  
+
   .login-link {
-    text-align: center;
-    margin-top: 15px;
-    font-size: 14px;
+      font-size: 12px; /* Ukuran font lebih kecil */
   }
-  
+}
+
+@media (max-width: 480px) {
+  .register-title {
+      font-size: 18px; /* Ukuran judul lebih kecil */
+  }
+
+  .register-button {
+      font-size: 12px;
+      padding: 6px; /* Kurangi padding */
+  }
+
+  .login-link {
+      font-size: 10px; /* Ukuran font lebih kecil */
+  }
+}

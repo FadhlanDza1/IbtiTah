@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Form, Input, Button, Upload, Avatar, message } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
 import "../style/profile.css";
+import "../style/background.css"
 import api from "../Connection/api";
 import NavigationDrawer from "./NavigationDrawer";
 
@@ -60,10 +61,10 @@ const Profile = () => {
   };
 
   return (
-    <div className="dashboard-layout">
+    <div className="bg-layout">
       <NavigationDrawer />
-      <div className="dashboard-content">
-        <h2 className="dashboard-title">Profile</h2>
+      <div className="bg-container-content">
+        <h2 className="bg-title">Profile</h2>
         <div className="profile-card">
           <div className="profile-row">
             <div className="profile-avatar-container">

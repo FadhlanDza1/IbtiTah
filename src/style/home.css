@@ -116,7 +116,7 @@
   }
 
   .p {
-    font-size: 1.8rem; /* Ukuran font lebih kecil */
+    font-size: 1.8rem;
   }
 
   .button-custom {
@@ -142,5 +142,74 @@
     width: 140px;
     height: 32px;
     font-size: 12px;
+  }
+}
+/* Tambahan Responsif untuk Struktur */
+@media (max-width: 1024px) {
+  .struktur .card-content {
+    flex-direction: column; /* Atur elemen vertikal */
+    text-align: center; /* Rata tengah */
+  }
+
+  .profile-image {
+    margin: 0 auto 10px auto; /* Posisikan di tengah dengan margin */
+  }
+
+  .card-info {
+    text-align: center; /* Rata tengah untuk informasi */
+  }
+}
+
+/* Responsif untuk Events Section */
+@media (max-width: 1024px) {
+  .events-title {
+    font-size: 1.8rem; /* Kurangi ukuran font */
+    margin-bottom: 50px; /* Kurangi margin bawah */
+  }
+
+  .event-card {
+    max-width: 95%; /* Sesuaikan ukuran maksimum card */
+    margin: 0 auto; /* Pusatkan card */
+  }
+
+  .event-date {
+    font-size: 0.9rem; /* Kurangi ukuran font tanggal */
+  }
+}
+
+/* Carousel Responsif */
+@media (max-width: 768px) {
+  .event-card {
+    max-width: 90%; /* Lebarkan sedikit card */
+    margin: 0 auto 20px auto; /* Tambahkan margin bawah */
+  }
+
+  .event-image {
+    max-height: 120px; /* Sesuaikan tinggi gambar */
+  }
+}
+
+/* Tambahan untuk Grid Card */
+@media (max-width: 768px) {
+  .struktur .card {
+    margin-bottom: 20px; /* Tambahkan jarak antar card */
+  }
+}
+
+@media (max-width: 480px) {
+  .struktur .card {
+    margin-bottom: 15px;
+  }
+
+  .struktur .title-card {
+    font-size: 1.5rem; /* Kurangi ukuran font */
+  }
+}
+
+/* Footer Responsif */
+@media (max-width: 480px) {
+  .ant-layout-footer {
+    font-size: 12px; /* Kurangi ukuran font */
+    padding: 5px 10px; /* Kurangi padding */
   }
 }

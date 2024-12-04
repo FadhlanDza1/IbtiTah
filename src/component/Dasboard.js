@@ -5,6 +5,7 @@ import "../style/dasboard.css"; // Fixed typo in the filename (dasboard -> dashb
 import NavigationDrawer from "./NavigationDrawer";
 import api from "../Connection/api";
 import { Navigate } from "react-router-dom";
+import "../style/background.css"
 
 const { Option } = Select;
 
@@ -209,17 +210,18 @@ const Dashboard = () => {
   }
 
   return (
-    <div className="dashboard-layout">
-      <NavigationDrawer />
-      <div className="dashboard-content">
-        <h2 className="dashboard-title">Dashboard</h2>
-        <div className="table-wrapper">
+    <div className="bg-layout">
+      <NavigationDrawer  />
+      <div className="bg-container-content">
+        <h2 className="bg-title">Dashboard</h2>
+        <div className="bg-table-wrapper">
           <Table
             columns={columns}
             dataSource={recites}
             loading={loading}
             pagination={{ position: ["bottomCenter"], pageSize: 10 }}
             bordered
+            scroll={{ x: 'max-content' }}
           />
         </div>
       </div>

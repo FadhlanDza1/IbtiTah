@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Menu, Button } from "antd";
 import {
@@ -110,11 +109,16 @@ const NavigationDrawer = () => {
             />
             <h3 className="drawer-title">IbTiTah</h3>
             <p className="drawer-subtitle">Fakultas Sains dan Teknologi</p>
+            
           </div>
 
           {/* Menu berdasarkan role */}
           {role === "mentor" ? mentorMenu : studentMenu}
+          <div className="drawer-text-copy">
+            2024 Fakultas Sains & Teknologi <br/>UIN Sunan Gunung Djati Bandung
+          </div>
         </div>
+
       )}
 
       {/* Tombol Buka (opsional) */}

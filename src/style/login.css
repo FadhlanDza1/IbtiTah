@@ -1,37 +1,97 @@
 /* LoginForm.css */
 .login-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #f5f5f5;
-  }
-  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f5f5f5;
+  padding: 20px; /* Tambahkan padding agar terlihat lebih rapi di layar kecil */
+  box-sizing: border-box; /* Pastikan elemen termasuk padding */
+}
+
+.login-box {
+  width: 426px;
+  max-width: 90%; /* Agar kotak tidak terlalu besar di layar kecil */
+  height: 500px;
+  padding: 20px;
+  align-items: center;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.login-title {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.forgot-password {
+  float: right;
+  font-size: 14px; /* Sesuaikan ukuran teks */
+}
+
+.login-button {
+  width: 100%;
+  background-color: #4CAF50;
+  color: white;
+  font-size: 16px;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.login-button:hover {
+  background-color: #45a049;
+}
+
+.register-link {
+  text-align: center;
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
   .login-box {
-    width: 426px;
-    height: 618px;
-    padding: 20px;
-    align-items: center;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      height: auto; /* Agar tinggi menyesuaikan konten */
+      padding: 15px; /* Kurangi padding di layar lebih kecil */
   }
-  
+
   .login-title {
-    text-align: center;
+      font-size: 20px; /* Sesuaikan ukuran teks */
   }
-  
+
   .forgot-password {
-    float: right;
+      font-size: 12px; /* Kurangi ukuran teks */
   }
-  
+
   .login-button {
-    width: 100%;
-    background-color: #4CAF50;
+      font-size: 14px; /* Kurangi ukuran font */
+      padding: 8px; /* Kurangi padding tombol */
   }
-  
+
   .register-link {
-    text-align: center;
-    margin-top: 10px;
+      font-size: 12px; /* Sesuaikan ukuran teks */
   }
-  
+}
+
+@media (max-width: 480px) {
+  .login-title {
+      font-size: 18px; /* Kurangi lagi ukuran teks */
+  }
+
+  .login-button {
+      font-size: 12px;
+      padding: 6px;
+  }
+
+  .forgot-password {
+      font-size: 10px;
+  }
+
+  .register-link {
+      font-size: 10px;
+  }
+}
