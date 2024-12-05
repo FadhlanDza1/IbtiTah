@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Menu, Button } from "antd";
 import {
   DashboardOutlined,
-
   CloudUploadOutlined,
   QuestionCircleOutlined,
   CloseOutlined,
@@ -14,22 +13,19 @@ import {
 import "../style/navigationDrawer.css"; // Import file CSS untuk styling
 import logo from "../images/Avatar.png";
 import { Link, useNavigate } from "react-router-dom";
+import { useDrawer } from "../contrext/DrawerContext";
 
 const NavigationDrawer = () => {
-  const [isDrawerVisible, setIsDrawerVisible] = useState(true);
   const navigate = useNavigate();
 
-  // Ambil role dari localStorage
+  const {isDrawerVisible,toggleDrawer} = useDrawer();
+
   const role = localStorage.getItem("roleUser");
 
-  const closeDrawer = () => {
-    setIsDrawerVisible(false);
-  };
-
-  const openDrawer = () => {
-    setIsDrawerVisible(true);
-  };
-
+  const handleMenuClick=(path)=>{
+    navigate(path)
+    toggleDrawer()
+  }
   const handleLogout = () => {
     // Hapus userId dan role dari localStorage
     localStorage.removeItem("userId");
@@ -41,21 +37,17 @@ const NavigationDrawer = () => {
   // Menu untuk mahasiswa
   const studentMenu = (
     <Menu mode="vertical" className="drawer-menu">
-      <Menu.Item key="1" icon={<DashboardOutlined />}>
+      <Menu.Item key="1" icon={<DashboardOutlined />} onClick={() =>handleMenuClick("/dasboard")}>
         Dashboard
-        <Link to="/dasboard" />
       </Menu.Item>
-      <Menu.Item key="2" icon={<CloudUploadOutlined />}>
+      <Menu.Item key="2" icon={<CloudUploadOutlined />} onClick={() =>handleMenuClick("/upload")}>
         Upload
-        <Link to="/upload" />
       </Menu.Item>
-      <Menu.Item key="3" icon={<ProfileOutlined />}>
+      <Menu.Item key="3" icon={<ProfileOutlined />} onClick={() =>handleMenuClick("/profile")}>
         Profile
-        <Link to="/profile" />
       </Menu.Item>
-      <Menu.Item key="4" icon={<QuestionCircleOutlined />}>
+      <Menu.Item key="4" icon={<QuestionCircleOutlined />} onClick={() =>handleMenuClick("/FAQ")}>
         FAQ
-        <Link to="/FAQ"/>
       </Menu.Item>
       <Menu.Item key="5" icon={<LoginOutlined />} onClick={handleLogout}>
         Logout
@@ -66,21 +58,17 @@ const NavigationDrawer = () => {
   // Menu untuk mentor
   const mentorMenu = (
     <Menu mode="vertical" className="drawer-menu">
-      <Menu.Item key="1" icon={<DashboardOutlined />}>
+      <Menu.Item key="1" icon={<DashboardOutlined />} onClick={() =>handleMenuClick("/dasboard")}>
         Dashboard
-        <Link to="/dasboard" />
       </Menu.Item>
-      <Menu.Item key="2" icon={<TeamOutlined />}>
+      <Menu.Item key="2" icon={<TeamOutlined />} onClick={() =>handleMenuClick("/daftarMahasiswa")}>
         Mahasiswa
-        <Link to="/daftarMahasiswa" />
       </Menu.Item>
-      <Menu.Item key="3" icon={<ProfileOutlined />}>
+      <Menu.Item key="3" icon={<ProfileOutlined />} onClick={() =>handleMenuClick("/profile")}>
         Profile
-        <Link to="/profile" />
       </Menu.Item>
-      <Menu.Item key="4" icon={<QuestionCircleOutlined />}>
+      <Menu.Item key="4" icon={<QuestionCircleOutlined />} onClick={() =>handleMenuClick("/FAQ")}>
         FAQ
-        <Link to="/FAQ"/>
       </Menu.Item>
       <Menu.Item key="5" icon={<LoginOutlined />} onClick={handleLogout}>
         Logout
@@ -97,7 +85,7 @@ const NavigationDrawer = () => {
             icon={<CloseOutlined />}
             shape="circle"
             className="close-button"
-            onClick={closeDrawer}
+            onClick={toggleDrawer}
           />
 
           {/* Logo dan Nama */}
@@ -126,7 +114,7 @@ const NavigationDrawer = () => {
         <Button
           className="open-button"
           shape="circle"
-          onClick={openDrawer}
+          onClick={toggleDrawer}
         >☰</Button>
       )}
     </>

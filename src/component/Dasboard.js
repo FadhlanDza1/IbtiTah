@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { Table, Button, message, Select,  } from "antd";
+import { Table, Button, message, Select,Row, Col, Space, Typography   } from "antd";
 import { DeleteOutlined } from "@ant-design/icons";
 import "../style/dasboard.css"; // Fixed typo in the filename (dasboard -> dashboard)
 import NavigationDrawer from "./NavigationDrawer";
 import api from "../Connection/api";
 import { Navigate } from "react-router-dom";
-import "../style/background.css"
 
+import "../style/background.css"
+import { useDrawer } from "../contrext/DrawerContext";
+const { Title } = Typography;
 const { Option } = Select;
 
 const Dashboard = () => {
@@ -15,7 +17,7 @@ const Dashboard = () => {
   const userId = localStorage.getItem("userId"); // Mendapatkan userId
   const roleUser = localStorage.getItem("roleUser"); // Mendapatkan role user
 
-  // // Check if userId is available for navigation purposes
+  const {isDrawerVisible} = useDrawer()
 
 
   const getEndpoint = (id) => {
@@ -59,6 +61,7 @@ const Dashboard = () => {
     }else{
       fetchRecites()
     }
+    
   },[]);
 
   // Fungsi untuk menghapus data
@@ -210,12 +213,42 @@ const Dashboard = () => {
   }
 
   return (
-    <div className="bg-layout">
-      <NavigationDrawer  />
-      <div className="bg-container-content">
-        <h2 className="bg-title">Dashboard</h2>
+    <Row className="bg-layout">
+      {isDrawerVisible ?
+      <Col md={{span:7}} lg={{span: 6}} xl={{span: 4}} xxl={{span: 3}}>
+      <NavigationDrawer/>
+    </Col>:<Col lg={{span: 1}} xl={{span: 1}} xxl={{span: 1}}>
+      <NavigationDrawer/>
+    </Col>
+      }
+      {isDrawerVisible ?
+      <Col md={{span:16}}lg={{span: 17}} xl={{span: 19}} xxl={{span: 20}}>
+      <Space
+      direction="vertical"
+      size="middle"
+      className="bg-container-content"
+      >
+        <Title className="bg-title">Dashboard</Title>
         <div className="bg-table-wrapper">
-          <Table
+        <Table
+            columns={columns}
+            dataSource={recites}
+            loading={loading}
+            pagination={{ position: ["bottomCenter"], pageSize: 8 }}
+            bordered
+            scroll={{ x: 'max-content' }}
+          />
+          </div>
+      </Space>
+      </Col>:<Col md={{span:24}} lg={{span: 24}} xl={{span: 24}} xxl={{span: 24}}>
+      <Space
+      direction="vertical"
+      size="middle"
+      className="bg-container-content"
+      >
+        <Title className="bg-title">Dashboard</Title>
+        <div className="bg-table-wrapper">
+        <Table
             columns={columns}
             dataSource={recites}
             loading={loading}
@@ -223,9 +256,12 @@ const Dashboard = () => {
             bordered
             scroll={{ x: 'max-content' }}
           />
-        </div>
-      </div>
-    </div>
+          </div>
+      </Space>
+      </Col>
+    }
+      
+    </Row>
   );
 };
 

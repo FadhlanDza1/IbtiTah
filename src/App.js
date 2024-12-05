@@ -11,6 +11,7 @@ import FAQ from './component/FAQ';
 
 function App() {
   return (
+
     <Router>
       <Routes>
         <Route path='/' element={<Home/>}/> 
@@ -23,6 +24,7 @@ function App() {
         <Route path='/FAQ' element={<FAQ/>}/>
       </Routes>
     </Router>
+
   );
 }
 
