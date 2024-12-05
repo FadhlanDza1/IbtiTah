@@ -1,4 +1,4 @@
-/* Global styles */
+
 .img {
   max-height: 75vh;
   width: 100%;
@@ -8,16 +8,16 @@
 
 .text-overlay {
   position: absolute;
-  top: 50%; /* Posisikan di tengah vertikal */
-  left: 5%; /* Posisikan di kiri layar */
-  transform: translateY(-50%); /* Hapus efek horizontal, hanya vertikal */
+  top: 50%; 
+  left: 5%; 
+  transform: translateY(-50%); 
   color: #fff;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-  text-align: left; /* Teks rata kiri */
+  text-align: left; 
   padding: 10px;
   box-sizing: border-box;
-  z-index: 2; /* Pastikan overlay ada di atas elemen lain */
-  max-width: 90%; /* Membatasi lebar teks pada layar kecil */
+  z-index: 2; 
+  max-width: 90%; 
 }
 
 .p {
@@ -38,7 +38,7 @@
   margin-top: 20px;
 }
 
-/* Struktur styles */
+
 .struktur {
   margin: 50px auto;
   text-align: center;
@@ -82,7 +82,7 @@
   font-weight: bold;
 }
 
-/* Events styles */
+
 .events {
   margin: 50px auto;
   text-align: center;
@@ -107,11 +107,11 @@
   color: #1890ff;
 }
 
-/* Responsiveness for smaller screens */
+
 @media (max-width: 768px) {
   .text-overlay {
-    top: 40%; /* Geser posisi lebih ke atas untuk layar kecil */
-    left: 5%; /* Tetap di kiri layar */
+    top: 40%; 
+    left: 5%; 
     transform: translateY(-40%);
   }
 
@@ -120,7 +120,7 @@
   }
 
   .button-custom {
-    width: 160px; /* Sesuaikan ukuran tombol */
+    width: 160px; 
     height: 36px;
     font-size: 14px;
   }
@@ -128,10 +128,10 @@
 
 @media (max-width: 480px) {
   .text-overlay {
-    top: 35%; /* Geser lebih ke atas pada layar yang sangat kecil */
-    left: 5%; /* Tetap di kiri layar */
+    top: 35%; 
+    left: 5%; 
     transform: translateY(-35%);
-    max-width: 100%; /* Agar teks tidak terpotong */
+    max-width: 100%;
   }
 
   .p {
@@ -144,55 +144,54 @@
     font-size: 12px;
   }
 }
-/* Tambahan Responsif untuk Struktur */
+
 @media (max-width: 1024px) {
   .struktur .card-content {
-    flex-direction: column; /* Atur elemen vertikal */
-    text-align: center; /* Rata tengah */
+    flex-direction: column; 
+    text-align: center; 
   }
 
   .profile-image {
-    margin: 0 auto 10px auto; /* Posisikan di tengah dengan margin */
+    margin: 0 auto 10px auto; 
   }
-
   .card-info {
-    text-align: center; /* Rata tengah untuk informasi */
+    text-align: center; 
   }
 }
 
-/* Responsif untuk Events Section */
+
 @media (max-width: 1024px) {
   .events-title {
-    font-size: 1.8rem; /* Kurangi ukuran font */
-    margin-bottom: 50px; /* Kurangi margin bawah */
+    font-size: 1.8rem; 
+    margin-bottom: 50px; 
   }
 
   .event-card {
-    max-width: 95%; /* Sesuaikan ukuran maksimum card */
-    margin: 0 auto; /* Pusatkan card */
+    max-width: 95%; 
+    margin: 0 auto; 
   }
 
   .event-date {
-    font-size: 0.9rem; /* Kurangi ukuran font tanggal */
+    font-size: 0.9rem; 
   }
 }
 
-/* Carousel Responsif */
+
 @media (max-width: 768px) {
   .event-card {
-    max-width: 90%; /* Lebarkan sedikit card */
-    margin: 0 auto 20px auto; /* Tambahkan margin bawah */
+    max-width: 90%; 
+    margin: 0 auto 20px auto; 
   }
 
   .event-image {
-    max-height: 120px; /* Sesuaikan tinggi gambar */
+    max-height: 120px; 
   }
 }
 
-/* Tambahan untuk Grid Card */
+
 @media (max-width: 768px) {
   .struktur .card {
-    margin-bottom: 20px; /* Tambahkan jarak antar card */
+    margin-bottom: 20px; 
   }
 }
 
@@ -202,14 +201,14 @@
   }
 
   .struktur .title-card {
-    font-size: 1.5rem; /* Kurangi ukuran font */
+    font-size: 1.5rem; 
   }
 }
 
-/* Footer Responsif */
+
 @media (max-width: 480px) {
   .ant-layout-footer {
-    font-size: 12px; /* Kurangi ukuran font */
-    padding: 5px 10px; /* Kurangi padding */
+    font-size: 12px; 
+    padding: 5px 10px; 
   }
 }
