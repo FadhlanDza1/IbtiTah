@@ -8,6 +8,7 @@ import Upload from './component/Upload';
 import Profile from './component/Profile';
 import AllMahasiswa from './component/AllMahasiswa';
 import FAQ from './component/FAQ';
+import ListMentors from './component/ListMentors';
 
 function App() {
   return (
@@ -20,8 +21,9 @@ function App() {
         <Route path='/dasboard' element={<Dasboard/>}/>
         <Route path='/upload' element={<Upload/>}/>
         <Route path='/profile' element={<Profile/>}/>
-        <Route path='/daftarMahasiswa' element={<AllMahasiswa/>}/>
+        <Route path='/mentor/list/Mahasiswa' element={<AllMahasiswa/>}/>
         <Route path='/FAQ' element={<FAQ/>}/>
+        <Route path='/admin/list/mentors' element ={<ListMentors/>}/>
       </Routes>
     </Router>
 

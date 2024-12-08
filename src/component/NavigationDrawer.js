@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Menu, Button } from "antd";
 import {
   DashboardOutlined,
@@ -6,13 +6,12 @@ import {
   QuestionCircleOutlined,
   CloseOutlined,
   LoginOutlined,
-
   ProfileOutlined,
   TeamOutlined,
 } from "@ant-design/icons";
 import "../style/navigationDrawer.css"; // Import file CSS untuk styling
 import logo from "../images/Avatar.png";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useDrawer } from "../contrext/DrawerContext";
 
 const NavigationDrawer = () => {
@@ -58,7 +57,7 @@ const NavigationDrawer = () => {
   // Menu untuk mentor
   const mentorMenu = (
     <Menu mode="vertical" className="drawer-menu">
-      <Menu.Item key="1" icon={<DashboardOutlined />} onClick={() =>handleMenuClick("/dasboard")}>
+      <Menu.Item key="1" icon={<DashboardOutlined />} onClick={() =>handleMenuClick("/admin/list/mentors")}>
         Dashboard
       </Menu.Item>
       <Menu.Item key="2" icon={<TeamOutlined />} onClick={() =>handleMenuClick("/daftarMahasiswa")}>
@@ -75,6 +74,19 @@ const NavigationDrawer = () => {
       </Menu.Item>
     </Menu>
   );
+  const adminMenu =(
+    <Menu mode="vertical" className="drawer-menu">
+      <Menu.Item key="1" icon={<DashboardOutlined />} onClick={() =>handleMenuClick("/dasboard")}>
+        Mentor
+      </Menu.Item>
+      <Menu.Item key="2" icon={<TeamOutlined />} onClick={() =>handleMenuClick("/daftarMahasiswa")}>
+        Staff
+      </Menu.Item>
+      <Menu.Item key="5" icon={<LoginOutlined />} onClick={handleLogout}>
+        Logout
+      </Menu.Item>
+    </Menu>
+  )
 
   return (
     <>
@@ -101,15 +113,13 @@ const NavigationDrawer = () => {
           </div>
 
           {/* Menu berdasarkan role */}
-          {role === "mentor" ? mentorMenu : studentMenu}
+          {role === "MENTOR" ? mentorMenu : role === "ADMIN" ? adminMenu : studentMenu}
           <div className="drawer-text-copy">
             2024 Fakultas Sains & Teknologi <br/>UIN Sunan Gunung Djati Bandung
           </div>
         </div>
 
       )}
-
-      {/* Tombol Buka (opsional) */}
       {!isDrawerVisible && (
         <Button
           className="open-button"

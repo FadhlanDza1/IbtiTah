@@ -12,8 +12,8 @@ const {Title} = Typography
 
 const Upload = () =>{
   const userId = localStorage.getItem("userId")
-  console.log(userId)
   const {isDrawerVisible} = useDrawer()
+  const [form] = Form.useForm();
   const handleSubmit = async (values) => {
     
     try {
@@ -23,6 +23,7 @@ const Upload = () =>{
           reciteSurah: values.surah,
           reciteAyat: values.ayat,
           reciteLink: values.link,
+
         },
       };
       
@@ -30,16 +31,18 @@ const Upload = () =>{
       if (response.status === 200) {
         console.log("Data berhasil diupload", response.data)
         message.success("Data Berhasil Diupload")
-        
+        form.resetFields();
       }else{
         message.error("Kelasahan Upload")
+        console.log(response)
       }
 
     } catch (error) {
-      message.error(`kesalahan upload code`, error)
+      message.error(`kesalahan upload`)
+      console.log(error)
     }
   }
-    const [form] = Form.useForm();
+
     return(
       <Row className="bg-layout">
         {isDrawerVisible ?

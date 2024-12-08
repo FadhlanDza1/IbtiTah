@@ -1,17 +1,16 @@
-/* LoginForm.css */
 .login-container {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
   background-color: #f5f5f5;
-  padding: 20px; /* Tambahkan padding agar terlihat lebih rapi di layar kecil */
-  box-sizing: border-box; /* Pastikan elemen termasuk padding */
+  padding: 20px; 
+  box-sizing: border-box; 
 }
 
 .login-box {
   width: 426px;
-  max-width: 90%; /* Agar kotak tidak terlalu besar di layar kecil */
+  max-width: 90%; 
   height: 500px;
   padding: 20px;
   align-items: center;
@@ -52,34 +51,34 @@
   font-size: 14px;
 }
 
-/* Responsiveness */
+
 @media (max-width: 768px) {
   .login-box {
-      height: auto; /* Agar tinggi menyesuaikan konten */
-      padding: 15px; /* Kurangi padding di layar lebih kecil */
+      height: auto; 
+      padding: 15px; 
   }
 
   .login-title {
-      font-size: 20px; /* Sesuaikan ukuran teks */
+      font-size: 20px; 
   }
 
   .forgot-password {
-      font-size: 12px; /* Kurangi ukuran teks */
+      font-size: 12px; 
   }
 
   .login-button {
-      font-size: 14px; /* Kurangi ukuran font */
-      padding: 8px; /* Kurangi padding tombol */
+      font-size: 14px; 
+      padding: 8px; 
   }
 
   .register-link {
-      font-size: 12px; /* Sesuaikan ukuran teks */
+      font-size: 12px; 
   }
 }
 
 @media (max-width: 480px) {
   .login-title {
-      font-size: 18px; /* Kurangi lagi ukuran teks */
+      font-size: 18px; 
   }
 
   .login-button {

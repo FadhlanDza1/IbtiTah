@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Form, Input, Button, Typography, Radio, Select, message } from "antd";
+import { Form, Input, Button, Typography, Select, message } from "antd";
 import "../style/register.css";
 import NavigationBar from "./NavigationBar";
 import { useNavigate } from "react-router-dom";
@@ -10,18 +10,18 @@ const { Option } = Select;
 
 const Register = () => {
   const [loading, setLoading] = useState(false);
-  const [mentors, setMentors] = useState([]); // State untuk daftar mentor
+  const [mentors, setMentors] = useState([]);
   const navigate = useNavigate();
-
-  // Fetch data mentor dari backend
+  
   useEffect(() => {
     const fetchMentors = async () => {
       try {
-        const response = await api.get("/mentor"); // Ganti endpoint jika diperlukan
+        const response = await api.get("/mentor/MENTOR")
         if (response.status === 200 && Array.isArray(response.data.mentors)) {
           setMentors(response.data.mentors);
         } else {
           message.error("Gagal memuat daftar mentor.");
+          console.log(response.message)
         }
       } catch (err) {
         message.error("Terjadi kesalahan saat memuat mentor.");
@@ -38,22 +38,21 @@ const Register = () => {
       let payload = {
         username: values.username,
         password: values.password,
-        ref: values.ref,
+        ref: "student",
         studentMentor: values.mentorName || null, // Menggunakan mentorId yang dipilih
       };
 
-      const response = await api.post("/register", payload);
+      const response = await api.post("/student/register", payload);
 
       if (response.status === 200) {
         message.success("Registrasi berhasil!");
-        console.log(payload)
-        navigate("/login"); // Arahkan ke halaman login setelah registrasi berhasil
+        navigate("/login");
       } else {
         message.error("Registrasi gagal. Periksa data Anda.");
       }
     } catch (err) {
       message.error("Terjadi kesalahan. Coba lagi nanti.");
-      console.log(err);
+      console.log(err.message);
     } finally {
       setLoading(false);
     }
@@ -85,67 +84,40 @@ const Register = () => {
               rules={[
                 {
                   required: true,
-                  message: "Silakan masukkan username Anda!",
+                  message: "Silakan masukkan NIM Anda!",
                 },
-              ]}
-            >
-              <Input placeholder="Masukkan username Anda" />
-            </Form.Item>
-
-            {/* Radio Button Role */}
-            <Form.Item
-              label="Role"
-              name="ref"
-              rules={[
                 {
-                  required: true,
-                  message: "Silakan pilih role Anda!",
-                },
+                  min:10,
+                  max:10,
+                  message:"NIM yang anda masukan Kurang atau lebih"
+                }
               ]}
             >
-              <Radio.Group>
-                <Radio value="student">Student</Radio>
-                <Radio value="mentor">Mentor</Radio>
-              </Radio.Group>
+              <Input placeholder="Masukkan NIM Anda" />
             </Form.Item>
 
-            {/* Dropdown Nama Mentor */}
             <Form.Item
-              noStyle
-              shouldUpdate={(prevValues, currentValues) =>
-                prevValues.ref !== currentValues.ref
+            label="Pilih Mentor Anda"
+            name="mentorName"
+            rules={[
+              {
+                required: true,
+                message: "Silahkan Pilih Mentor Anda!"
               }
+            ]}
             >
-              {({ getFieldValue }) =>
-                getFieldValue("ref") === "student" && (
-                  <Form.Item
-                    label="Pilih Mentor"
-                    name="mentorName"
-                    rules={[
-                      {
-                        required: true,
-                        message: "Silakan pilih mentor Anda!",
-                      },
-                    ]}
-                  >
-                    <Select placeholder="Pilih mentor Anda">
-                      {mentors.length === 0 ? (
-                        <Option disabled>Data mentor tidak tersedia</Option>
-                      ) : (
-                        mentors.map((mentor) => (
-                          <Option key={mentor.mentorName} value={mentor.mentorName}>
-                            {/* Menampilkan nama mentor */}
-                            {mentor.mentorName || "Nama mentor tidak tersedia"}
-                          </Option>
-                        ))
-                      )}
-                    </Select>
-                  </Form.Item>
-                )
-              }
+              <Select placeholder="Pilih Mentor Anda">
+                {mentors.length === 0?(
+                  <Option disable>Data Mentor Tidak Tersedia</Option>):
+                  (mentors.map((mentor) =>(
+                    <Option key={mentor.mentorName} value={mentor.mentorName}>
+                      {mentor.mentorName || "Nama Mentor Tidak Tersedia"}
+                    </Option>
+                  ))
+                )}
+              </Select>
             </Form.Item>
 
-            {/* Input Password */}
             <Form.Item
               label="Password"
               name="password"
@@ -158,8 +130,6 @@ const Register = () => {
             >
               <Input.Password placeholder="Masukkan password Anda" />
             </Form.Item>
-
-            {/* Submit Button */}
             <Form.Item>
               <Button
                 type="primary"

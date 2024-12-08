@@ -28,9 +28,8 @@ const Login = () => {
         await message.success("Login berhasil!");
         navigate("/dasboard")
         const {user, role} = response.data;
-        const userId = user._id;
+        const userId = user.id;
         const roleUser = role
-        console.log(response.data)
         if (roleUser === "mentor") {
           const mentorName = user.mentorName;
           const mentorContact = user.mentorContact;
@@ -82,11 +81,14 @@ const Login = () => {
             rules={[
               {
                 required: true,
-                message: "Silakan masukkan username Anda!",
-              },
+                message: "Silakan masukkan NIM/NIP Anda!",
+              },{
+                min:10,
+                message:"NIM/NIP kurang"
+              }
             ]}
           >
-            <Input placeholder="Masukkan UnserName (MIN/NIP) Anda" />
+            <Input placeholder="Masukkan UnserName (NIM/NIP) Anda" />
           </Form.Item>
 
           {/* Input for Password */}
@@ -104,21 +106,15 @@ const Login = () => {
           </Form.Item>
 
           {/* Radio Buttons for 'ref' */}
-          <Form.Item label="Login sebagai">
+          <Form.Item label="Role :">
             <Radio.Group
               onChange={(e) => setRefValue(e.target.value)}
               value={refValue}
             >
               <Radio value="student">Mahasiswa</Radio>
-              <Radio value="mentor">Mentor</Radio>
+              <Radio value="MENTOR">Mentor</Radio>
+              <Radio value="ADMIN">Admin</Radio>
             </Radio.Group>
-          </Form.Item>
-
-          {/* Forgot Password */}
-          <Form.Item>
-            <Text type="secondary" className="forgot-password">
-              <a href="#forgot">Lupa Password?</a>
-            </Text>
           </Form.Item>
 
           {/* Submit Button */}

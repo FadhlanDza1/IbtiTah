@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL ="https://tahfidz-tracker.vercel.app"
+const BASE_URL ="https://server-ibtitah.vercel.app"
 
 const api = axios.create({
     baseURL:BASE_URL

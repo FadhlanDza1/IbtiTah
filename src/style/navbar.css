@@ -1,6 +1,6 @@
-/* Navbar Styling */
+
 .navbar-custom {
-    background-color: #4BE2BF; /* Medium Green */
+    background-color: #4BE2BF; 
     padding: 1rem 2rem;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: background-color 0.3s ease;
@@ -12,14 +12,14 @@
   }
   
   .navbar-brand-text {
-    color: #ffffff; /* White text */
+    color: #ffffff; 
     font-size: 1.25rem;
     font-weight: bold;
     margin-left: 0.5rem;
   }
   
   .navbar-toggler-custom {
-    border-color: #ffffff; /* White border for the toggler */
+    border-color: #ffffff; 
   }
   
   .navbar-toggler-icon {
@@ -27,7 +27,7 @@
   }
   
   .nav-link-custom {
-    color: #ffffff; /* White text */
+    color: #ffffff;
     font-size: 1.15rem;
     font-weight: 500;
     margin: 0 0.5rem;
@@ -35,7 +35,7 @@
   }
   
   .nav-link-custom:hover {
-    color: #dce775; /* Light Green on hover */
+    color: #dce775; 
   }
   
   @media (max-width: 768px) {

@@ -1,4 +1,4 @@
-/* Tombol buka drawer */
+
 .open-button {
   position: fixed;
   top: 20px; 
@@ -27,17 +27,17 @@
   transition: transform 0.3s ease-in-out;
 }
 
-/* Tombol tutup drawer */
+
 .close-button {
   position: absolute;
-  top: 20px; /* Jarak dari atas */
-  right: 20px; /* Jarak dari kanan */
+  top: 20px;
+  right: 20px; 
   background-color: transparent;
   border: none;
   color: #333;
   font-size: 24px;
   cursor: pointer;
-  z-index: 1001; /* Pastikan tombol tutup berada di atas drawer */
+  z-index: 1001;
 }
 .drawer-logo {
   text-align: center;
@@ -89,6 +89,7 @@
   font-size: 18px;
   color: #50d1c0;
 }
+
 @media screen and (min-width: 767px) {
   .drawer-container{
     position: relative;
