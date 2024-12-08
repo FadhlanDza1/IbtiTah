@@ -1,4 +1,4 @@
-import { Input, Button, Col, Form, message, Modal, Row, Table, Typography, Select } from "antd";
+import { Input, Button, Col, Form, message, Modal, Row, Table, Typography, Select, Popconfirm } from "antd";
 import React, { useEffect, useState } from "react";
 import "../style/background.css"
 import api from "../Connection/api";
@@ -12,7 +12,8 @@ const ListMentors = () =>{
     const [mentors,setMentors] = useState([])
     const [loading, setLoading] = useState(false)
     const [isModalVisible, setIsModalVisible] = useState(false);
-    const roleUser = "Mentor"//localStorage.getItem("roleUser")
+    const roleUser = localStorage.getItem("roleUser")
+    
     console.log(roleUser)
     if (roleUser !== "ADMIN") {
         navigate("/login")
@@ -58,6 +59,22 @@ const ListMentors = () =>{
                     <Option value = "ADMIN">Admin</Option>
                 </Select>
             )
+        },
+        {
+            title: 'Action',
+            key: 'action',
+            render: (_, record) => (
+              <Popconfirm
+                title="Are you sure to delete this record?"
+                onConfirm={() => handleDelete(record.mentorId)}
+                okText="Yes"
+                cancelText="No"
+              >
+                <Button type="primary" danger>
+                  Delete
+                </Button>
+              </Popconfirm>
+            ),
         }
     ]
     const fetchMentor = async() =>{
@@ -101,6 +118,16 @@ const ListMentors = () =>{
         localStorage.removeItem("role")
         navigate("/login")
     }
+    const handleDelete = async(key) =>{
+        const deleteData = await api.delete(`/admin/${key}/ADMIN`)
+        if (deleteData.status===200) {
+            message.success(deleteData.data.message)
+            fetchMentor()
+        }else{
+            message.error("salah")
+
+        }
+    }
     const createMentor = async(values) =>{  
         const payload = {
             id:values.id,
@@ -111,12 +138,10 @@ const ListMentors = () =>{
         }
         try {
             const response = await api.post("/admin/create", payload) 
-            if (response.ok) {
+            if (response.status === 200) {
                 message.success("Berhasil Menambahkan Mentor")
-                console.log(response.data)
             } else {
                 message.error("Terjadi kesalahan. Coba lagi nanti.")
-                console.log(response.data)
             }
         } catch (error) {
             message.error("Terjadi kesalahan. Coba lagi nanti.");
@@ -124,6 +149,7 @@ const ListMentors = () =>{
         } finally {
             form.resetFields();
             setIsModalVisible(false)
+            fetchMentor()
         }
     }
     const updateRoleUser = async(updateUser,mentorId) =>{
@@ -142,6 +168,7 @@ const ListMentors = () =>{
             <Button
             color="danger"
             variant="solid"
+            onClick={handleLogout}
             >Logout!</Button>
                 <Row className="bg-container-content">
                     <Col xs={{span:24}} sm={{span:24}} md={{span:19}} lg={{span: 20}} xl={{span: 21}} xxl={{span: 22}}>
@@ -169,7 +196,11 @@ const ListMentors = () =>{
                             <Form.Item
                             label = "NIP"
                             name="id"
-                            rules={[{ required: true, message: 'NIP Mentor wajib diisi' }]}
+                            rules={[{ required: true, message: 'NIP Mentor wajib diisi' },
+                                {
+                                    min:18,
+                                    message:"NIP kurang panjang"
+                                }]}
                             >
                                 <Input/>
                             </Form.Item>
@@ -177,11 +208,7 @@ const ListMentors = () =>{
                             <Form.Item
                             label = "Nama Mentor"
                             name="name"
-                            rules={[{ required: true, message: 'Nama Mentor wajib diisi' },
-                                {
-                                    min:18,
-                                    message:"NIP kurang panjang"
-                                }
+                            rules={[{ required: true, message: 'Nama Mentor wajib diisi' }
                             ]}
                             >
                                 <Input/>

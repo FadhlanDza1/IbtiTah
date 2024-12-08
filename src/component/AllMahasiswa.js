@@ -17,7 +17,7 @@ const AllMahasiswa= () =>{
     const fetchStudent = async () =>{
         setLoading(true)
         try {
-            const response = await api.get(`mentor/${userId}/students`)
+            const response = await api.get(`mentor/${userId}/students/MENTOR`)
             const dataMahasiswa = response.data.students;
             console.log(dataMahasiswa)
             const mapData = dataMahasiswa.map((item, index) => ({

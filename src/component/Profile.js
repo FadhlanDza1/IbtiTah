@@ -1,11 +1,12 @@
-import React, { useState } from "react";
-import { Form, Input, Button, Upload, Avatar, message, Row, Col, Space, Typography } from "antd";
+import React, { useEffect, useState } from "react";
+import { Form, Input, Button, Upload, Avatar, message, Row, Col, Space, Typography, Spin } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
 import "../style/profile.css";
 import "../style/background.css"
 import api from "../Connection/api";
 import NavigationDrawer from "./NavigationDrawer";
 import { useDrawer } from "../contrext/DrawerContext";
+import axios from "axios";
 
 const {Title} = Typography
 
@@ -13,48 +14,47 @@ const {Title} = Typography
 const Profile = () => {
   const [imageUrl, setImageUrl] = useState(null);
   const [form] = Form.useForm();
-  const studentName = localStorage.getItem("studentName")
-  const studentContact = localStorage.getItem("studentContact")
-  const studentMajor = localStorage.getItem("studentMajor")
-  const mentorName = localStorage.getItem("mentorName")
-  const mentorContact = localStorage.getItem("mentorContact")
+  const [dataProfile, setDataProfile] = useState(null);
+  const [loading, setLoading] = useState(false)
   const userId = localStorage.getItem("userId");
   const roleUser = localStorage.getItem("roleUser"); 
   const {isDrawerVisible} = useDrawer()
-
-  const getEndpoint = (id) => (roleUser === "mentor" ? `/mentor/${id}` : `/student/${id}`);
-
+  const getEndpoint = (id) => (roleUser === "MENTOR" ? `/mentor/${id}/MENTOR` : `/student/${id}`);
 
   const handleUpdateProfile = async (values) => {
     try {
       const payload =
-        roleUser === "mentor"
+        roleUser === "MENTOR"
           ? {
               mentorName: values.userName,
               mentorContact: values.userContact,
               password: values.password,
+              photoUrl:imageUrl
             }
           : {
               studentName: values.userName,
               studentContact: values.userContact,
               studentMajor: values.userMajor,
               password: values.password,
+              photoUrl:imageUrl
             };
 
       const response = await api.put(getEndpoint(userId), payload);
 
       if (response.status === 200) {
         message.success("Profil berhasil diperbarui!");
+        
       } else {
         message.error("Gagal memperbarui profil!");
+        console.log(response.message)
       }
     } catch (error) {
       message.error("Terjadi kesalahan saat memperbarui profil!");
-      console.error(error);
+      console.log(error)
     }
   };
 
-  const handleUpload = (info) => {
+  const handleUpload = async(info) => {
     if (info.file.status === "done") {
       const uploadedImageUrl = URL.createObjectURL(info.file.originFileObj);
       setImageUrl(uploadedImageUrl);
@@ -62,7 +62,44 @@ const Profile = () => {
     } else if (info.file.status === "error") {
       message.error(`${info.file.name} gagal diunggah!`);
     }
+    // Membuat objek FormData untuk mengirimkan file ke Cloudinary
+    const formData = new FormData();
+
+    formData.append("file", info.file);
+    formData.append("upload_preset", "jc6bfdpu");  // Ganti dengan upload preset Anda
+    formData.append("cloud_name", "dlzbdofko");  // Ganti dengan cloud name Anda
+    try {
+      const response = await axios.post(
+        "https://api.cloudinary.com/v1_1/dlzbdofko/image/upload", 
+        formData
+      );
+
+      console.log(response.data.url)
+      const uploadedImageUrl = response.data.url
+
+      setImageUrl(uploadedImageUrl)
+      message.success("berhasil upload gambar")
+      setDataProfile((prevProfile) => ({
+        ...prevProfile,
+        photoUrl: uploadedImageUrl,  // Update photoUrl di dataProfile
+      }));
+
+    } catch (error) {
+      message.error("Upload failed!");
+    }
+
   };
+  const feacthProfile =async()=>{
+    const response = await api.get(getEndpoint(userId))
+    const data = response.data.mentor? response.data.mentor: response.data.student
+    setDataProfile(data)
+    
+    setLoading(false)
+  }
+  useEffect(()=>{
+    setLoading(true)
+    feacthProfile()
+  },[])
 
   return (
     <Row className="bg-layout">
@@ -80,13 +117,14 @@ const Profile = () => {
       size="middle"
       className="bg-container-content">
         <Title className="bg-title">Profile</Title>
+        {dataProfile == null ? <Spin/>: 
         <div className="profile-card">
           <div className="profile-row">
             <div className="profile-avatar-container">
               <Avatar
                 size={150}
                 shape="square"
-                src={imageUrl || "https://via.placeholder.com/150"}
+                src={imageUrl || dataProfile.photoUrl}
                 alt="Profile Avatar"
                 className="profile-avatar"
               />
@@ -104,16 +142,19 @@ const Profile = () => {
                 </Button>
               </Upload>
             </div>
+
             {/* Bagian Kanan: Form */}
+           
             <div className="profile-form-container">
+              
               <Form
                 form={form}
                 layout="vertical"
                 onFinish={handleUpdateProfile}
                 initialValues={{
-                  userName: roleUser === "mentor" ? mentorName|| "" : studentName|| "",
-                  userContact:roleUser === "mentor" ? mentorContact|| "" : studentContact|| "",
-                  userMajor: roleUser === "student" ? studentMajor|| "" : undefined,
+                  userName: roleUser === "MENTOR" ? dataProfile.mentorName|| "" : dataProfile.studentName|| "",
+                  userContact:roleUser === "MENTOR" ? dataProfile.mentorContact|| "" : dataProfile.studentContact|| "",
+                  userMajor: roleUser === "student" ? dataProfile.studentMajor|| "" : undefined,
                   password: "",
                 }}
               >
@@ -141,9 +182,11 @@ const Profile = () => {
                   </Button>
                 </Form.Item>
               </Form>
+              
             </div>
           </div>
         </div>
+      }
       </Space>
       </Col>:
       <Col md={{span:24}} lg={{span:24}} xl={{span:24}} xxl={{span:24}}>
@@ -152,13 +195,14 @@ const Profile = () => {
       size="middle"
       className="bg-container-content">
         <Title className="bg-title">Profile</Title>
+        {dataProfile == null ? <Spin/>: 
         <div className="profile-card">
           <div className="profile-row">
             <div className="profile-avatar-container">
               <Avatar
                 size={150}
                 shape="square"
-                src={imageUrl || "https://via.placeholder.com/150"}
+                src={dataProfile.photoUrl}
                 alt="Profile Avatar"
                 className="profile-avatar"
               />
@@ -176,16 +220,16 @@ const Profile = () => {
                 </Button>
               </Upload>
             </div>
-            {/* Bagian Kanan: Form */}
-            <div className="profile-form-container">
+            
+            <div className="profile-form-container">  
               <Form
                 form={form}
                 layout="vertical"
                 onFinish={handleUpdateProfile}
                 initialValues={{
-                  userName: roleUser === "mentor" ? mentorName|| "" : studentName|| "",
-                  userContact:roleUser === "mentor" ? mentorContact|| "" : studentContact|| "",
-                  userMajor: roleUser === "student" ? studentMajor|| "" : undefined,
+                  userName: roleUser === "MENTOR" ? dataProfile.mentorName|| "" : dataProfile.studentName|| "",
+                  userContact:roleUser === "MENTOR" ? dataProfile.mentorContact|| "" : dataProfile.studentContact|| "",
+                  userMajor: roleUser === "student" ? dataProfile.studentMajor|| "" : undefined,
                   password: "",
                 }}
               >
@@ -214,8 +258,10 @@ const Profile = () => {
                 </Form.Item>
               </Form>
             </div>
+          
           </div>
         </div>
+        }
       </Space>
       </Col>
     }

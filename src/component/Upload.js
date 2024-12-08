@@ -34,12 +34,11 @@ const Upload = () =>{
         form.resetFields();
       }else{
         message.error("Kelasahan Upload")
-        console.log(response)
       }
 
     } catch (error) {
-      message.error(`kesalahan upload`)
-      console.log(error)
+      message.error(error.response.data.error)
+      console.log(error.response.data.error)
     }
   }
 

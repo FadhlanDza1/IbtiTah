@@ -22,8 +22,8 @@ const Dashboard = () => {
 
   const getEndpoint = (id) => {
     // Determine endpoint based on roleUser
-    if (roleUser === "mentor") {
-      return `/mentor/${id}/recites`;
+    if (roleUser === "MENTOR") {
+      return `/mentor/${id}/recites/MENTOR`;
     }
     return `/student/${id}/recite`; // Fixed endpoint for student role
   };
@@ -78,9 +78,9 @@ const Dashboard = () => {
 
   const handleStatusChange = async (updatedValues, reciteId) => {
     try {
-      await api.post(`/mentor/${reciteId}/review`, updatedValues);
+      await api.post(`/mentor/${reciteId}/review/MENTOR`, updatedValues);
       message.success("Status berhasil diperbarui.");
-      fetchRecites(); // Refresh tabel setelah update
+      fetchRecites();
     } catch (error) {
       console.error("Error updating status:", error.response?.data || error.message);
       message.error("Gagal memperbarui status.");
@@ -111,7 +111,7 @@ const Dashboard = () => {
       key: "status",
       align: "center",
       render: (status, record) =>
-        roleUser === "mentor" ? (
+        roleUser === "MENTOR" ? (
           <Select
             defaultValue={status}
             style={{ width: 120 }}
@@ -139,7 +139,7 @@ const Dashboard = () => {
       key: "reciteReview",
       align: "center",
       render: (review, record) =>
-        roleUser === "mentor" ? (
+        roleUser === "MENTOR" ? (
           <Select
             defaultValue={review}
             style={{ width: 120 }}
@@ -170,7 +170,7 @@ const Dashboard = () => {
       key: "reciteScore",
       align: "center",
       render: (score, record) =>
-        roleUser === "mentor" ? (
+        roleUser === "MENTOR" ? (
           <Select
             defaultValue={score}
             style={{ width: 120 }}

@@ -24,32 +24,23 @@ const Login = () => {
       const response = await api.post("/login", payload)
       console.log(response)
       if (response.status === 200) {
-        // const data = await response.json();
         await message.success("Login berhasil!");
-        navigate("/dasboard")
-        const {user, role} = response.data;
-        const userId = user.id;
-        const roleUser = role
-        if (roleUser === "mentor") {
-          const mentorName = user.mentorName;
-          const mentorContact = user.mentorContact;
-          localStorage.setItem("mentorName", mentorName)
-          localStorage.setItem("mentorContact", mentorContact)
-        }else{
-          const studentName = user.studentName;
-          const studentMajor = user.studentMajor;
-          const studentContact = user.studentContact;
-          localStorage.setItem("studentName", studentName)
-          localStorage.setItem("studentContact", studentContact)
-          localStorage.setItem("studentMajor", studentMajor)
-        }
+        const user = response.data.user;
+        const userId = user.id
+        const roleUser = user.role
+        console.log(userId, roleUser)
         localStorage.setItem("userId", userId)
         localStorage.setItem("roleUser", roleUser)
+        if (roleUser === "ADMIN") {
+          navigate("/admin/list/mentors")
+        }else{
+          navigate("/dasboard")
+        }
       } else {
         message.error(response.data?.message || "Login gagal. Periksa data Anda.");
       }
     } catch (err) {
-      message.error(`Terjadi kesalahan. Coba lagi nanti. ${err}`);
+      message.error(`Terjadi kesalahan. Coba lagi nanti.`);
     } finally {
       setLoading(false);
     }
