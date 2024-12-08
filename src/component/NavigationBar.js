@@ -25,8 +25,6 @@ function NavigationBar() {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">
             <Nav.Link as={Link} to="/" className="nav-link-custom">Beranda</Nav.Link>
-            <Nav.Link as={Link} to="/dasboard" className="nav-link-custom">Struktur</Nav.Link>
-            <Nav.Link as={Link} to="/gallery" className="nav-link-custom">Acara</Nav.Link>
             <Nav.Link as={Link} to="/login" className="nav-link-custom">Login</Nav.Link>
           </Nav>
         </Navbar.Collapse>
