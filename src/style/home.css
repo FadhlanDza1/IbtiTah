@@ -110,9 +110,8 @@
 
 @media (max-width: 768px) {
   .text-overlay {
-    top: 40%; 
-    left: 5%; 
     transform: translateY(-40%);
+    z-index: 5;
   }
 
   .p {

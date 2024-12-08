@@ -41,6 +41,7 @@
   @media (max-width: 768px) {
     .navbar-custom {
       padding: 0.5rem 1rem;
+      z-index: 7;
     }
   
     .navbar-brand-text {

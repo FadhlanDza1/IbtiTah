@@ -122,6 +122,7 @@ const AllMahasiswa= () =>{
                             dataSource={student}
                             loading={loading}
                             pagination={{ position: ["bottomCenter"], pageSize: 8 }}
+                            scroll={{ x: 'max-content' }}
                             bordered
                         />
                     </div>

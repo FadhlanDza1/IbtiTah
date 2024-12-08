@@ -51,10 +51,14 @@ const Profile = () => {
     } catch (error) {
       message.error("Terjadi kesalahan saat memperbarui profil!");
       console.log(error)
+    }finally{
+      form.resetFields();
+      feacthProfile();
     }
   };
 
   const handleUpload = async(info) => {
+    setLoading(true)
     if (info.file.status === "done") {
       const uploadedImageUrl = URL.createObjectURL(info.file.originFileObj);
       setImageUrl(uploadedImageUrl);
@@ -69,6 +73,7 @@ const Profile = () => {
     formData.append("upload_preset", "jc6bfdpu");  // Ganti dengan upload preset Anda
     formData.append("cloud_name", "dlzbdofko");  // Ganti dengan cloud name Anda
     try {
+      
       const response = await axios.post(
         "https://api.cloudinary.com/v1_1/dlzbdofko/image/upload", 
         formData
@@ -83,7 +88,7 @@ const Profile = () => {
         ...prevProfile,
         photoUrl: uploadedImageUrl,  // Update photoUrl di dataProfile
       }));
-
+      setLoading(false)
     } catch (error) {
       message.error("Upload failed!");
     }
